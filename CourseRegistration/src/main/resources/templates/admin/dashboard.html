@@ -1,54 +1,81 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-   <head>
-       <title>Admin Dashboard</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-   </head>
-   <body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>Admin Dashboard</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+<body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Welcome Administrator</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" >Dashboard</a>
-      </li>
-    </ul>
-    <a class="btn btn-secondary btn-lg active" th:href="@{/logout}" type="button">Logout</a>
-  </div>
-</nav>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">Welcome Administrator</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link">Dashboard</a>
+				</li>
+			</ul>
+			<a class="btn btn-secondary btn-lg active" th:href="@{/logout}"
+				type="button">Logout</a>
+		</div>
+	</nav>
 
-<div class="card" style="padding: 5px;">
-  <div class="card-body">
-  	<h5 class="card-title" th:text="'The current Semester is ' + ${currentSemester.semesterName} + ' ' + ${currentSemester.year}"></h5>
-<form method="post" th:action="@{/updateCurrentSemester}" class="form">
-<div class="form-group">
-    <label for="semesterList" class="col-sm-2 col-form-label">Select a new Semester</label>
-    <div class="col-sm-10">
-      <select id="Semester" class="form-control" th:name="idSemester">
-  		<option th:each="semester : ${semesterList}" th:value="${semester.idSemester}" th:text="${semester.semesterName} +' '+  ${semester.year} "></option>
- 	  </select>
-    </div>
-</div>
-  <button type="submit" class="btn btn-outline-secondary">Update Semester</button>
-</form>
-  </div>
-</div>
+	<div class="card" style="padding: 5px;">
+		<div class="card-body">
+			<h5 class="card-title"
+				th:text="'The current Semester is ' + ${currentSemester.semesterName} + ' ' + ${currentSemester.year}"></h5>
+			<form method="post" th:action="@{/updateCurrentSemester}"
+				class="form">
+				<div class="form-group">
+					<label for="semesterList" class="col-sm-2 col-form-label">Select
+						a new Semester</label>
+					<div class="col-sm-10">
+						<select id="Semester" class="form-control" th:name="idSemester">
+							<option th:each="semester : ${semesterList}"
+								th:value="${semester.idSemester}"
+								th:text="${semester.semesterName} +' '+  ${semester.year} "></option>
+						</select>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-outline-secondary">Update
+					Semester</button>
+			</form>
+		</div>
+	</div>
 
 
-<div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto mt-lg-5">
-<div class="card" style="width: 30rem;">
-	<a href="newUser" class="btn btn-secondary" role="button">Add a New User</a><div style="padding: 2px;"></div>
-	<a href="allUsers" class="btn btn-secondary" role="button">Update or Remove an Existing User</a><div style="padding: 2px;"></div>
-	<a href="newCourse" class="btn btn-secondary" role="button">Add a New Course</a><div style="padding: 2px;"></div>
-	<a href="allCourses" class="btn btn-secondary" role="button">Update or Remove an Existing Course</a><div style="padding: 2px;"></div>
-	<a href="newCourseSemester" class="btn btn-secondary" role="button" >Set Course Details for a Semester</a><div style="padding: 2px;"></div>
-	<a href="allCourseSemester" class="btn btn-secondary" role="button" >Update Course Details for a Semester</a><div style="padding: 2px;"></div>
-</div>
-</div>
+	<div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto mt-lg-5">
+		<div class="card" style="width: 30rem;">
+			<a href="newUser" class="btn btn-secondary" role="button">Add a
+				New User</a>
+			<div style="padding: 2px;"></div>
+			<a href="allUsers" class="btn btn-secondary" role="button">Update
+				or Remove an Existing User</a>
+			<div style="padding: 2px;"></div>
+			<a href="newCourse" class="btn btn-secondary" role="button">Add a
+				New Course</a>
+			<div style="padding: 2px;"></div>
+			<a href="allCourses" class="btn btn-secondary" role="button">Update
+				or Remove an Existing Course</a>
+			<div style="padding: 2px;"></div>
+			<a href="newCourseSemester" class="btn btn-secondary" role="button">Set
+				Course Details for a Semester</a>
+			<div style="padding: 2px;"></div>
+			<a href="allCourseSemester" class="btn btn-secondary" role="button">Update
+				Course Details for a Semester</a>
+			<div style="padding: 2px;"></div>
+		</div>
+	</div>
 
-   </body>
+</body>
 </html>

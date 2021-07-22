@@ -1,99 +1,125 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-   <head>
-       <title>New Course</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-   </head>
-   <body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>New Course</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+<body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Welcome Administrator</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="dashboard">Dashboard <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-    <a class="btn btn-secondary btn-lg active" th:href="@{/logout}" type="button">Logout</a>
-  </div>
-</nav>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">Welcome Administrator</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link"
+					href="dashboard">Dashboard <span class="sr-only">(current)</span></a>
+				</li>
+			</ul>
+			<a class="btn btn-secondary btn-lg active" th:href="@{/logout}"
+				type="button">Logout</a>
+		</div>
+	</nav>
 
-<div class="card" style="width: 50rem; padding: 10px">
+	<div class="card" style="width: 50rem; padding: 10px">
 
-<form method="post" th:object="${course}" th:action="@{/addCourse}" class="form">
-  <div class="form-group">
-    <label for="CourseName" class="col-sm-2 col-form-label">Course Name</label>
-    <div class="col-sm-10">
-      <input id="CourseName" type="text" class="form-control" th:field="*{courseName}" />
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="Department" class="col-sm-2 col-form-label">Department</label>
-    <div class="col-sm-10">
-      <select id="Department" class="form-control" th:field="*{idDepartment.idDepartment}">
-  		<option th:each="department : ${departments}" th:value="${department.idDepartment}" th:text="${department.name}"></option>
- 	  </select>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="Credits" class="col-sm-2 col-form-label">Credits</label>
-    <div class="col-sm-10">
-      <input id="Credits" type="text" class="form-control" th:field="*{credits}">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="Prerequisite" class="col-sm-2 col-form-label">Prerequisite</label>
-    <div class="col-sm-10">
-       <input id="Prerequisite" class="form-control" th:field="*{idPrerequisite}" list="courses">
-       		<datalist id="courses">
-       		<option th:each="course : ${courseList}" th:value="${course.idCourse}" th:text="${course.courseName}"></option>
-       		</datalist>
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <label for="Classroom" class="col-sm-2 col-form-label">Classroom</label>
-    <div class="col-sm-10">
-      <input id="Classroom" type="text" class="form-control" th:field="*{idClassrooms.idClassrooms}" list="classrooms">
-      		<datalist id="classrooms">
-       		<option th:each="classroom : ${classroomList}" th:value="${classroom.idClassrooms}" th:text="${classroom.name}"></option>
-       		</datalist>
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <label for="day" class="col-sm-2 col-form-label">Day</label>
-    <div class="col-sm-10">
-      <select id="day" class="form-control" th:name="day" th:value="${day}" th:field="*{day}">
-  		<option th:value="Monday" th:text="Monday"></option>
-  		<option th:value="Tuesday" th:text="Tuesday"></option>
-  		<option th:value="Wednesday" th:text="Wednesday"></option>
-  		<option th:value="Thursday" th:text="Thursday"></option>
-  		<option th:value="Friday" th:text="Friday"></option>
-  		<option th:value="Saturday" th:text="Saturday"></option>
- 	  </select>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="StartTime" class="col-sm-2 col-form-label">Start Time</label>
-    <div class="col-sm-10">
-      <input id="StartTime" type="text" class="form-control" th:field="*{startTime}">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="EndTime" class="col-sm-2 col-form-label">End Time</label>
-    <div class="col-sm-10">
-      <input id="EndTime" type="text" class="form-control" th:field="*{endTime}">
-    </div>
-  </div>
-  	<button type="submit" class="btn btn-outline-secondary">Submit
-  	</button>
-</form>
+		<form method="post" th:object="${course}" th:action="@{/addCourse}"
+			class="form">
+			<div class="form-group">
+				<label for="CourseName" class="col-sm-2 col-form-label">Course
+					Name</label>
+				<div class="col-sm-10">
+					<input id="CourseName" type="text" class="form-control"
+						th:field="*{courseName}" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="Department" class="col-sm-2 col-form-label">Department</label>
+				<div class="col-sm-10">
+					<select id="Department" class="form-control"
+						th:field="*{idDepartment.idDepartment}">
+						<option th:each="department : ${departments}"
+							th:value="${department.idDepartment}"
+							th:text="${department.name}"></option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="Credits" class="col-sm-2 col-form-label">Credits</label>
+				<div class="col-sm-10">
+					<input id="Credits" type="text" class="form-control"
+						th:field="*{credits}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="Prerequisite" class="col-sm-2 col-form-label">Prerequisite</label>
+				<div class="col-sm-10">
+					<input id="Prerequisite" class="form-control"
+						th:field="*{idPrerequisite}" list="courses">
+					<datalist id="courses">
+						<option th:each="course : ${courseList}"
+							th:value="${course.idCourse}" th:text="${course.courseName}"></option>
+					</datalist>
+				</div>
+			</div>
 
-</div>
+			<div class="form-group">
+				<label for="Classroom" class="col-sm-2 col-form-label">Classroom</label>
+				<div class="col-sm-10">
+					<input id="Classroom" type="text" class="form-control"
+						th:field="*{idClassrooms.idClassrooms}" list="classrooms">
+					<datalist id="classrooms">
+						<option th:each="classroom : ${classroomList}"
+							th:value="${classroom.idClassrooms}" th:text="${classroom.name}"></option>
+					</datalist>
+				</div>
+			</div>
 
-   </body>
+			<div class="form-group">
+				<label for="day" class="col-sm-2 col-form-label">Day</label>
+				<div class="col-sm-10">
+					<select id="day" class="form-control" th:name="day"
+						th:value="${day}" th:field="*{day}">
+						<option th:value="Monday" th:text="Monday"></option>
+						<option th:value="Tuesday" th:text="Tuesday"></option>
+						<option th:value="Wednesday" th:text="Wednesday"></option>
+						<option th:value="Thursday" th:text="Thursday"></option>
+						<option th:value="Friday" th:text="Friday"></option>
+						<option th:value="Saturday" th:text="Saturday"></option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="StartTime" class="col-sm-2 col-form-label">Start
+					Time</label>
+				<div class="col-sm-10">
+					<input id="StartTime" type="text" class="form-control"
+						th:field="*{startTime}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="EndTime" class="col-sm-2 col-form-label">End
+					Time</label>
+				<div class="col-sm-10">
+					<input id="EndTime" type="text" class="form-control"
+						th:field="*{endTime}">
+				</div>
+			</div>
+			<button type="submit" class="btn btn-outline-secondary">Submit
+			</button>
+		</form>
+
+	</div>
+
+</body>
 </html>

@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <title>Login</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
 <style type="text/css">
 </style>
 </head>
@@ -13,24 +19,31 @@
 				<div class="container wow fadeIn">
 					<div class="row">
 						<div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto mt-lg-5">
-							<form th:action="@{/login}" th:object="${User}" method="post" style="width: 100%;">
+							<form th:action="@{/login}" th:object="${User}" method="post"
+								style="width: 100%;">
 								<div class="card">
 									<div class="card-body">
-										<div class="form-header">  
+										<div class="form-header"></div>
+										<div class="md-form">
+											<label for="email">Email</label> <input type="text"
+												id="email" th:field="*{email}" name="email"
+												class="form-control" autocomplete="off" required="required">
 										</div>
 										<div class="md-form">
-										<label for="email">Email</label>
-											<input type="text" id="email" th:field="*{email}" name="email" class="form-control" autocomplete="off" required="required"> 
+											<label for="password">Password</label> <input type="password"
+												id="password" th:field="*{password}" name="password"
+												class="form-control" autocomplete="off" required="required">
 										</div>
-										<div class="md-form">
-										    <label for="password">Password</label>
-											<input type="password" id="password" th:field="*{password}" name="password" class="form-control" autocomplete="off" required="required"> 
-										</div><br><br>
+										<br>
+										<br>
 										<div class="text-center">
 											<button class="btn btn-secondary btn-block">Login</button>
 										</div>
 										<div class="modal-footer text-center"></div>
-										<div class="alert alert-danger" id="error-div" th:if="${loginError} != null"><h6 th:text="${loginError}"></h6></div>
+										<div class="alert alert-danger" id="error-div"
+											th:if="${loginError} != null">
+											<h6 th:text="${loginError}"></h6>
+										</div>
 									</div>
 								</div>
 							</form>
