@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+   <head>
+       <title>Student Dashboard</title>
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   </head>
+   <body>
+   
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a th:text="'Welcome ' + ${User.Name} + ' ' + ${User.surname}" class="navbar-brand"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Dashboard</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" th:href="@{/student/register}" type="button">Registered Courses</a>
+      </li>
+    </ul>
+    <a class="btn btn-secondary btn-lg active" th:href="@{/logout}" type="button">Logout</a>
+  </div>
+</nav>
+
+<div style="padding: 25px;">
+<table class="table table-striped table-light" >
+  <thead class="thead-dark">
+    <tr>
+    <th scope="col">Selected Courses</th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    </tr>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Credits</th>
+      <th scope="col">Classroom</th>
+      <th scope="col">Day</th>
+      <th scope="col">Start Time</th>
+      <th scope="col">End Time</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="registration : ${UnapprovedList}">
+      <td th:text = "${registration?.idCourseSemester.idCourse.courseName}"></td>
+      <td th:text = "${registration?.idCourseSemester.idCourse.credits}"></td>
+      <td th:text = "${registration?.idCourseSemester.idCourse.idClassrooms.name}"></td>
+      <td th:text = "${registration?.idCourseSemester.idCourse.day}"></td>
+      <td th:text = "${registration?.idCourseSemester.idCourse.startTime}"></td>
+      <td th:text = "${registration?.idCourseSemester.idCourse.endTime}"></td>
+      <td> <form th:action="@{/remove}">
+    		<button class="btn btn-outline-danger" type="submit" th:name="idRegistration" th:value="${registration.idRegistration}">Remove
+    		</button>
+    		</form>
+      </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+<div class="card" style="padding: 5px;">
+  <div class="card-body">
+  	<h5 class="card-title">Search for a Course </h5>
+    <form method="post" th:action="@{searchCourses}" class="form">
+		<input type="text" class="form-control" th:value="${search}" th:name="search">
+		<button type="submit" class="btn btn-outline-secondary">Search</button>
+	</form>
+  </div>
+</div>
+
+<div style="padding: 25px;">
+<table class="table  table-striped table-light">
+  <thead class="thead-dark">
+  	<tr>
+  	<th scope="col">Available Courses</th>
+  	<th scope="col"></th>
+  	<th scope="col"></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    </tr>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Credits</th>
+      <th scope="col">Classroom</th>
+      <th scope="col">Day</th>
+      <th scope="col">Start Time</th>
+      <th scope="col">End Time</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="course : ${CourseList}">
+      <td th:text = "${course?.idCourse.courseName}"></td>
+      <td th:text = "${course?.idCourse.credits}"></td>
+      <td th:text = "${course?.idCourse.idClassrooms.Name}"></td>
+      <td th:text = "${course?.idCourse.day}"></td>
+      <td th:text = "${course?.idCourse.startTime}"></td>
+      <td th:text = "${course?.idCourse.endTime}"></td>
+      <td> 
+      	<form th:action="@{/add}">
+    	<button class="btn btn-outline-success" type="submit" th:name="idCourse" th:value="${course.idCourseSemester}">ADD</button>
+    	</form>
+      </td>
+    </tr>
+    <tr>
+  </tbody>
+</table>
+</div>
+   </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+   <head>
+       <title>New User</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   </head>
+   <body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Welcome Administrator</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="dashboard">Dashboard <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <a class="btn btn-secondary btn-lg active" th:href="@{/logout}" type="button">Logout</a>
+  </div>
+</nav>
+
+
+<div class="card" style="width: 50rem; padding: 10px">
+
+<form method="post" th:object="${user}" th:action="@{/addUser}" class="form">
+  <div class="form-group">
+    <label for="Name" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+      <input id="Name" type="text" class="form-control" th:field="*{name}" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="Surname" class="col-sm-2 col-form-label">Surname</label>
+    <div class="col-sm-10">
+      <input id="Surname" type="text" class="form-control" th:field="*{surname}" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="Department" class="col-sm-2 col-form-label">Department</label>
+    <div class="col-sm-10">
+      <select id="Department" class="form-control" th:field="*{idDepartment.idDepartment}">
+  		<option th:each="department : ${departments}" th:value="${department.idDepartment}" th:text="${department.name}"></option>
+ 	  </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="Email" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input id="Email" type="text" class="form-control" th:field="*{email}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="Password" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <input id="Password" type="password" class="form-control" th:field="*{password}">
+    </div>
+  </div>
+    <div class="form-group">
+    <label for="role" class="col-sm-2 col-form-label">Role</label>
+    <div class="col-sm-10">
+      <select id="role" class="form-control" th:name="role" th:value="${role}" th:field="*{role}">
+  		<option th:value="ROLE_STUDENT" th:text="Student"></option>
+  		<option th:value="ROLE_PROFESSOR" th:text="Professor"></option>
+  		<option th:value="ROLE_ADMIN" th:text="Admin"></option>
+ 	  </select>
+    </div>
+  </div>
+  	<button type="submit" class="btn btn-outline-secondary">Submit
+  	</button>
+</form>
+
+</div>
+
+   </body>
+</html>
