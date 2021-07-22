@@ -35,7 +35,7 @@
 	</nav>
 
 	<div style="padding: 25px;">
-		<table class="table table-striped table-light">
+		<table class="table table-striped table-light" style="width: 1200px;">
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">Selected Courses</th>
@@ -82,14 +82,14 @@
 			<h5 class="card-title">Search for a Course</h5>
 			<form method="post" th:action="@{searchCourses}" class="form">
 				<input type="text" class="form-control" th:value="${search}"
-					th:name="search">
+					th:name="search" style="width: 500px;">
 				<button type="submit" class="btn btn-outline-secondary">Search</button>
 			</form>
 		</div>
 	</div>
 
 	<div style="padding: 25px;">
-		<table class="table  table-striped table-light">
+		<table class="table  table-striped table-light" style="width: 1200px;">
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">Available Courses</th>

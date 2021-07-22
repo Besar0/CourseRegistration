@@ -39,8 +39,10 @@
 				<div class="form-group">
 					<label for="semesterList" class="col-sm-2 col-form-label">Select
 						a new Semester</label>
+
 					<div class="col-sm-10">
-						<select id="Semester" class="form-control" th:name="idSemester">
+						<select id="Semester" class="form-control" th:name="idSemester"
+							style="width: 200px;">
 							<option th:each="semester : ${semesterList}"
 								th:value="${semester.idSemester}"
 								th:text="${semester.semesterName} +' '+  ${semester.year} "></option>
@@ -49,6 +51,7 @@
 				</div>
 				<button type="submit" class="btn btn-outline-secondary">Update
 					Semester</button>
+
 			</form>
 		</div>
 	</div>
