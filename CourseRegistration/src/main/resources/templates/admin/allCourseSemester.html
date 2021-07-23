@@ -5,11 +5,17 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <title>All Course Semester</title>
+<script src="https://kit.fontawesome.com/7231b51d24.js" crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 </head>
+<style type="text/css">
+body {
+  font-family: Helvetica, sans-serif;
+}
+</style>
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,11 +30,11 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link"
-					href="dashboard">Dashboard <span class="sr-only">(current)</span></a>
+					href="dashboard"><i class="fas fa-home fa-2x"></i></a>
 				</li>
 			</ul>
 			<a class="btn btn-secondary btn-lg active" th:href="@{/logout}"
-				type="button">Logout</a>
+				type="button"><i class="fas fa-sign-out-alt"></i></a>
 		</div>
 	</nav>
 
@@ -38,7 +44,7 @@
 			<form method="post" th:action="@{searchCourseSemesters}" class="form">
 				<input type="text" class="form-control" th:value="${search}"
 					th:name="search" style="width: 500px;">
-				<button type="submit" class="btn btn-outline-secondary">Search</button>
+				<button type="submit" class="btn btn-outline-secondary"><i class="fas fa-search fa-2x"></i></button>
 			</form>
 		</div>
 	</div>
@@ -71,14 +77,14 @@
 					<td>
 						<form th:action="@{updateCourseSemester}">
 							<button class="btn btn-outline-success" type="submit"
-								th:name="idCourseSemester" th:value="${course.idCourseSemester}">Update
+								th:name="idCourseSemester" th:value="${course.idCourseSemester}"><i class="far fa-edit"></i>
 							</button>
 						</form>
 					</td>
 					<td>
 						<form th:action="@{removeCourseSemester}">
 							<button class="btn btn-outline-danger" type="submit"
-								th:name="idCourseSemester" th:value="${course.idCourseSemester}">Remove
+								th:name="idCourseSemester" th:value="${course.idCourseSemester}"><i class="far fa-trash-alt"></i>
 							</button>
 						</form>
 					</td>

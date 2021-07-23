@@ -5,10 +5,16 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <title>Student Dashboard</title>
+<script src="https://kit.fontawesome.com/7231b51d24.js" crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+<style type="text/css">
+body {
+  font-family: Helvetica, sans-serif;
+}
+</style>
 </head>
 <body>
 
@@ -23,14 +29,14 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">Dashboard</a>
+				<li class="nav-item active"><a class="nav-link" ><i class="fas fa-home fa-2x"></i></a>
 				</li>
 				<li class="nav-item active"><a class="nav-link"
-					th:href="@{/student/register}" type="button">Registered Courses</a>
+					th:href="@{/student/register}" type="button"><i class="fas fa-list-ul fa-2x"></i></a>
 				</li>
 			</ul>
 			<a class="btn btn-secondary btn-lg active" th:href="@{/logout}"
-				type="button">Logout</a>
+				type="button"><i class="fas fa-sign-out-alt"></i></a>
 		</div>
 	</nav>
 
@@ -69,7 +75,7 @@
 						<form th:action="@{/remove}">
 							<button class="btn btn-outline-danger" type="submit"
 								th:name="idRegistration"
-								th:value="${registration.idRegistration}">Remove</button>
+								th:value="${registration.idRegistration}"><i class="far fa-trash-alt"></i></button>
 						</form>
 					</td>
 				</tr>
@@ -83,7 +89,7 @@
 			<form method="post" th:action="@{searchCourses}" class="form">
 				<input type="text" class="form-control" th:value="${search}"
 					th:name="search" style="width: 500px;">
-				<button type="submit" class="btn btn-outline-secondary">Search</button>
+				<button type="submit" class="btn btn-outline-secondary"><i class="fas fa-search fa-2x"></i></button>
 			</form>
 		</div>
 	</div>
@@ -121,7 +127,7 @@
 					<td>
 						<form th:action="@{/add}">
 							<button class="btn btn-outline-success" type="submit"
-								th:name="idCourse" th:value="${course.idCourseSemester}">ADD</button>
+								th:name="idCourse" th:value="${course.idCourseSemester}"><i class="far fa-plus-square"></i></button>
 						</form>
 					</td>
 				</tr>
